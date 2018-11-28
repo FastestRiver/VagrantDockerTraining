@@ -1,0 +1,25 @@
+
+package
+===========================================
+yum -y install docker
+systemctl enable docker
+systemctl start docker
+
+curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+docker pull mongo:3.2.9
+docker pull rocketchat/rocket.chat:0.71.1
+
+mkdir -p /var/www/rocket.chat/data/runtime/db
+mkdir -p /var/www/rocket.chat/data/dump
+cp -p /vagrant/docker-compose.yml /var/www/rocket.chat/.
+
+===========================================
+
+
+
+
+sudo su -
+cd /var/www/rocket.chat
+docker-compose up -d
